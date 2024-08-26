@@ -17,7 +17,7 @@ class Historial {
         this.idAcciones = 0;
     }
     agregar_accion(idAccion : number, description : string, fecha : string) : Accion[] {
-        const nuevaAccion : Accion = new Accion(this.idAcciones++, description, fecha)
+        const nuevaAccion : Accion = new Accion(idAccion, description, fecha)
         this.acciones.push(nuevaAccion)
         return this.acciones;
     
