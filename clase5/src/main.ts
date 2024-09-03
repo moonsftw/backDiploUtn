@@ -1,6 +1,6 @@
-
+/* 
 import { Empleado, Puesto, Pasante } from "./Types/Empleado"
-/* hola */
+
 
 class ManejadorEmpleados {
     idEmpleados: number;
@@ -51,4 +51,48 @@ pasante1.aumentar_sueldo(1000);
 console.log(pasante1)
 pasante1.finalizar_pasantia();
 console.log(pasante1)
-pasante1?.presentar()
+pasante1?.presentar() */
+class Accion {
+    idAccion: number
+    description: string
+    fecha: string
+    constructor(idAccion: number, description: string, fecha: string) {
+        this.idAccion = idAccion
+        this.description = description
+        this.fecha = fecha
+    }
+}
+
+class Historial {
+    acciones: Accion[]
+    constructor() {
+        this.acciones = [];
+    }
+    agregar_accion(idAccion: number, description: string, fecha: string): Accion[] {
+        const nuevaAccion: Accion = new Accion(idAccion, description, fecha)
+        this.acciones.push(nuevaAccion)
+        console.log(`Accion con id ${idAccion} agregada`)
+        return this.acciones;
+    }
+    eliminar_accion_por_id(idAccion: number): void {
+        this.acciones = this.acciones.filter((accion: Accion) => accion.idAccion !== idAccion)
+        console.log(`Accion con id ${idAccion} eliminada`)
+    }
+    eliminar_todo(): void {
+        this.acciones = []
+        console.log("Todo el historial eliminado")
+    }
+    mostrar_historial(): void {
+        console.log(this.acciones)
+    }
+}
+
+
+const historial = new Historial()
+historial.agregar_accion(1, "hola", "01/01/2020")
+historial.agregar_accion(2, "chau", "01/01/2020")
+historial.agregar_accion(3, "buenas", "01/01/2020")
+
+historial.eliminar_accion_por_id(2)
+
+historial.mostrar_historial()
